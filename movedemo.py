@@ -11,6 +11,7 @@ def main():
     window.ship = arcade.Sprite("galleon.png")
     window.ship.center_x = 350
     window.ship.center_y = 350
+    window.ship_dx =0
     window.coins = arcade.Sprite("gold-coins-large.png")
     window.coins.center_x = random.randint(36, 664)
     window.coins.center_y = random.randint(36, 664)
@@ -20,14 +21,16 @@ def main():
 
 def comp151_draw(window):
     arcade.start_render()
+    if window.ship_dx != 0:
+        window.ship.center_x += window.ship_dx
     window.ship.draw()
     window.coins.draw()
     arcade.finish_render()
 
 def handle_key_press(window, key, mod):
     if key == arcade.key.LEFT:
-        window.ship.center_x -=5
+        window.ship_dx= -3
     elif key == arcade.key.RIGHT:
-        window.ship.center_x += 5
+        window.ship_dx =3
 
 main()
