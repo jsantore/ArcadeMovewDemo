@@ -9,6 +9,7 @@ import Comp151Window
 def main():
     window = Comp151Window.Comp151Window(800, 800, "Moving demo")
     window.ship = arcade.Sprite("galleon.png")
+    window.background_color = arcade.color.AFRICAN_VIOLET
     window.ship.center_x = 350
     window.ship.center_y = 350
     window.ship_dx =0
@@ -23,6 +24,12 @@ def main():
 
 def comp151_draw(window):
     arcade.start_render()
+    update_ship_location(window)
+    window.ship.draw()
+    window.coins.draw()
+    arcade.finish_render()
+
+def update_ship_location(window):
     if window.ship_dx != 0:
         window.ship.center_x += window.ship_dx
     if window.ship_dy !=0:
@@ -31,9 +38,6 @@ def comp151_draw(window):
         window.ship.center_x = 836
     if window.ship.center_x > 836:
         window.ship.center_x = -36
-    window.ship.draw()
-    window.coins.draw()
-    arcade.finish_render()
 
 def handle_key_press(window, key, mod):
     if key == arcade.key.LEFT:
